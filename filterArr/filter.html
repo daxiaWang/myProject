@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	var phoneArr = [ 
+			[1212],
+			[15221185467, 1212],
+			[15221185467, 1212, 15221187467, 15222748899],
+			[12334567890, 15222774899, 18816238589, 1212, 18816238589, 15221187467, 1522884848],
+		];
+	function filter(phoneArr) {
+		
+		
+
+		var commonArr = [];
+		if (phoneArr.length < 2) {
+			console.log('数据只有一个，没有数组交集');
+			return;
+		}
+			//找出大数组中 最短的两个数组
+		for (var i = 0; i < phoneArr.length; i++) {
+			var curArr = phoneArr[i]; 
+			if (curArr.length == 0) {
+				console.log('大数据中有一个元素数据为[]，没有数组交集');
+			return;
+			}
+			commonArr = commonArr.length > 0 ? commonArr : curArr ;
+			if (commonArr.length >= curArr.length) {
+				commonArr = curArr;
+			}
+		}
+		console.log(commonArr);
+		if (commonArr.length == 0) {
+			console.log('数据没有交集');
+			return;
+		}
+			//最短两个数组寻找的交集数组与大数组中的每个数组比对，寻找所有共同交集
+		for (var i = 0; i < phoneArr.length; i++) {
+			var curArr = phoneArr[i];
+			var curComArr = [];
+			for (var one = 0; one < curArr.length; one++) {
+				for (var two = 0; two < commonArr.length; two++) {
+					if (curArr[one] == commonArr[two] && curComArr.indexOf(commonArr[two]) == -1) {
+						curComArr.push(commonArr[two]);
+					}
+				}
+			}
+			commonArr = curComArr;
+		}
+
+			console.log('commonArr111');
+			console.log(commonArr);
+		}
+
+
+	filter(phoneArr);
+</script>
+</html>
